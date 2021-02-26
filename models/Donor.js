@@ -1,7 +1,7 @@
 // Donor.js
 // Clase que representa a un donador
 
-Class Donor {
+class Donor {
 	constructor (id, curp, firstName, lastName, dateOfBirth, gender, email, phoneNumber, placeOfResidence, bloodType, certifiedFile, formAnswers) {
 		this.id = id;
 		this.curp = curp;
