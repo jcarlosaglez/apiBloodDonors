@@ -8,7 +8,7 @@ function createReceiver(req, res) {
 function readReceivers(req, res) {
 	var receiver1 = new Receiver (1, 'MAVSJ1312928DDCDDFAS', 'Pedor', 'Meza', '24/06/1996', 'Masculino', 'pp99@gamil.com', '5527388901', 'CDMX');
 	var receiver2 = new Receiver (2, 'DAFMJ1312928DDCDDFAS', 'Daniela', 'Fernandez', '17/10/1993', 'Femenino', 'dafa@gamil.com', '5527388889', 'CDMX');
-	res.send([donador1, donador2]);
+	res.send([receiver1, receiver2]);
 }
 
 function readReceiver(req, res) {
