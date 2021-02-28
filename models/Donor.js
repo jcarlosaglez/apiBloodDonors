@@ -17,3 +17,5 @@ class Donor {
 		this.formAnswers = formAnswers;
 	}
 }
+
+module.exports = Donor;

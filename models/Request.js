@@ -10,3 +10,5 @@ class Request {
 		this.message = message;
 	}
 }
+
+module.exports = Request;
