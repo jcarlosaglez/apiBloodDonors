@@ -14,3 +14,5 @@ class Receiver {
 		this.phoneNumber = phoneNumber;
 	}
 }
+
+module.exports = Receiver;
