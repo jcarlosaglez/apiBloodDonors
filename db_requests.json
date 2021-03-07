@@ -1,0 +1,122 @@
+[
+	{
+		"_id": 1,
+		"id_Receiver": 1,
+		"id_Donor": 1,
+		"required_blood_type": "A+",
+		"message": "Necesito sangre A positivo urgente, se dara recompensa",
+		"status": "1"
+	},
+	{
+		"_id": 2,
+		"id_Receiver": 2,
+		"id_Donor": 2,
+		"required_blood_type": "B+",
+		"message": "Necesito sangre B positivo urgente, se dara recompensa",
+		"status": "1"
+	},
+	{
+		"_id": 3,
+		"id_Receiver": 3,
+		"id_Donor": 3,
+		"required_blood_type": "O+",
+		"message": "Necesito sangre O positivo urgente, se dara recompensa",
+		"status": "1"
+	},
+	{
+		"_id": 4,
+		"id_Receiver": 4,
+		"id_Donor": 4,
+		"required_blood_type": "O-",
+		"message": "Hola, busco personas que quieran donar sangre, necesito persona con O- favor de contactarme",
+		"status": "1"
+	},
+	{
+		"_id": 5,
+		"id_Receiver": 5,
+		"id_Donor": 5,
+		"required_blood_type": "A-",
+		"message": "Hola, busco personas que quieran donar sangre, necesito persona con A- favor de contactarme",
+		"status": "1"
+	},
+	{
+		"_id": 6,
+		"id_Receiver": 6,
+		"id_Donor": 6,
+		"required_blood_type": "B-",
+		"message": "Hola, busco personas que quieran donar sangre, necesito persona con B- favor de contactarme",
+		"status": "0"
+	},
+	{
+		"_id": 7,
+		"id_Receiver": 7,
+		"id_Donor": 7,
+		"required_blood_type": "AB+",
+		"message": "Hola, busco personas que quieran donar sangre, necesito persona con AB+ favor de contactarme",
+		"status": "0"
+	},
+	{
+		"_id": 8,
+		"id_Receiver": 8,
+		"id_Donor": 8,
+		"required_blood_type": "AB-",
+		"message": "Busco personas que quieran donar sangre, necesito persona con AB- favor de contactarme",
+		"status": "0"
+	},
+	{
+		"_id": 9,
+		"id_Receiver": 9,
+		"id_Donor": 9,
+		"required_blood_type": "O-",
+		"message": "Urgente se busca persona con sangre O NEGATIVO, se dara recompensa",
+		"status": "0"
+	},
+	{
+		"_id": 10,
+		"id_Receiver": 10,
+		"id_Donor": 10,
+		"required_blood_type": "O+",
+		"message": "Urgente se busca persona con sangre O POSITIVO, se dara recompensa",
+		"status": "0"
+	},
+	{
+		"_id": 11,
+		"id_Receiver": 11,
+		"id_Donor": 11,
+		"required_blood_type": "A+",
+		"message": "Urgente se busca persona con sangre A POSITIVO, se dara recompensa",
+		"status": "2"
+	},
+	{
+		"_id": 12,
+		"id_Receiver": 12,
+		"id_Donor": 12,
+		"required_blood_type": "A+",
+		"message": "En el hospital Donato se busca persona con sangre A+",
+		"status": "2"
+	},
+	{
+		"_id": 13,
+		"id_Receiver": 13,
+		"id_Donor": 13,
+		"required_blood_type": "AB+",
+		"message": "En el hospital Donato se busca persona con sangre AB+",
+		"status": "2"
+	},
+	{
+		"_id": 14,
+		"id_Receiver": 14,
+		"id_Donor": 14,
+		"required_blood_type": "AB-",
+		"message": "En el hospital Donato se busca persona con sangre AB-",
+		"status": "2"
+	},
+	{
+		"_id": 15,
+		"id_Receiver": 15,
+		"id_Donor": 15,
+		"required_blood_type": "B+",
+		"message": "En el hospital Donato se busca persona con sangre B+",
+		"status": "2"
+	}	
+]
