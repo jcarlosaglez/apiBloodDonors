@@ -1,10 +1,10 @@
 // Importar las bibliotecas necesarias.
 var express = require("express"),
 	bodyParser = require("body-parser"),
-	// cookieParser = require('cookie-parser'),
+	cookieParser = require('cookie-parser'),
 	cors = require("cors");
 
-// const session = require('express-session');
+const session = require('express-session');
 
 // Objeto global app 
 var app = express();
@@ -17,14 +17,14 @@ app.use(bodyParser.json());
 // app.use(express.json());
 
 //Agregamos cookieParser necesario para Express-session
-// app.use(cookieParser());
+app.use(cookieParser());
 
 //Configurano Express-session
-/* app.use(session({
+app.use(session({
     secret: 'lasmanzanascrecenenarbustos',
     resave: false,
     saveUninitialized: true
-})); */
+}));
 
 // Configurar mongoose
 const mongoose = require("mongoose");
