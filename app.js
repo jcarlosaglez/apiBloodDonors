@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 // Configurar mongoose
 const mongoose = require("mongoose");
 
-const connection_string = require("config/mongo.js").connection_string;
+const connection_string = require("./config/mongo.js").connection_string;
 
 /* mongoose.connect(
     connection_string,
