@@ -17,11 +17,11 @@ const mongoose = require('mongoose');			// Importando mongoose
 
 // Definir el schema para mongoose
 const RequestSchema = new mongoose.Schema({
-	idReceiver: {
+	id_receiver: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Receiver"
 	},
-	idDonor: {
+	id_donor: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Donor"
 	},
@@ -42,8 +42,8 @@ const RequestSchema = new mongoose.Schema({
 RequestSchema.methods.publicData = function() {
 	return {
 		id: this.id,
-		idReceiver: this.idReceiver,
-		idDonor: this.idDonor,
+		id_receiver: this.id_receiver,
+		id_donor: this.id_donor,
 		requiredBloodType: this.requiredBloodType,
 		message: this.message,
 		status: this.status,
