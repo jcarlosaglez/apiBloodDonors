@@ -1,11 +1,10 @@
 [
 	{
-		"_id": 1,
 		"curp": "PEFP890305HASRLD02",
 		"first_name": "Pedro",
 		"last_name": "Perez Flores",
-		"birthday": "05-03-1989",
-		"genre": "M",
+		"birthday": "1989-03-05",
+		"gender": "M",
 		"email": "pedropf@gmail.com",
 		"phone_number": "7895645102",
 		"place_of_residence": "Puebla",
@@ -16,15 +15,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 1
+		"status": "Activo"
 	},
 	{
-		"_id": 2,
 		"curp": "LOFP970812MASPNT08",
 		"first_name": "Patricia",
 		"last_name": "Lopez Fuentes",
-		"birthday": "12-08-1997",
-		"genre": "F",
+		"birthday": "1997-08-12",
+		"gender": "F",
 		"email": "patricia_lf@gmail.com",
 		"phone_number": "7895642102",
 		"place_of_residence": "Puebla",
@@ -35,15 +33,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 1
+		"status": "Activo"
 	},
 	{
-		"_id": 3,
 		"curp": "JAML900217HCSRTI011",
 		"first_name": "Luis",
 		"last_name": "Jardines Mota",
-		"birthday": "17-02-1990",
-		"genre": "M",
+		"birthday": "1990-02-17",
+		"gender": "M",
 		"email": "luis_j_m@gmail.com",
 		"phone_number": "7893245102",
 		"place_of_residence": "Puebla",
@@ -54,15 +51,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 1
+		"status": "Activo"
 	},
 	{
-		"_id": 4,
 		"curp": "GOLA940619HCSMNN011",
 		"first_name": "Andres",
 		"last_name": "Gomez Luna",
-		"birthday": "19-06-1994",
-		"genre": "M",
+		"birthday": "1994-06-19",
+		"gender": "M",
 		"email": "andy_golu@gmail.com",
 		"phone_number": "5593245102",
 		"place_of_residence": "Puebla",
@@ -73,15 +69,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 1
+		"status": "Activo"
 	},
 	{
-		"_id": 5,
 		"curp": "RECA981219MNTYLL03",
 		"first_name": "Alberta",
 		"last_name": "Reyes Colon",
-		"birthday": "19-12-1998",
-		"genre": "F",
+		"birthday": "1998-12-19",
+		"gender": "F",
 		"email": "beta_reyesc@gmail.com",
 		"phone_number": "5593245102",
 		"place_of_residence": "Puebla",
@@ -92,15 +87,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 0
+		"status": "Inactivo"
 	},
 	{
-		"_id": 6,
 		"curp": "JAGE981219MNTYLL03",
 		"first_name": "Jeremy",
 		"last_name": "Fosa Lopez",
-		"birthday": "19-12-1998",
-		"genre": "M",
+		"birthday": "1998-12-19",
+		"gender": "M",
 		"email": "jerem_fola@gmail.com",
 		"phone_number": "5593245102",
 		"place_of_residence": "Puebla",
@@ -111,17 +105,16 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 0
+		"status": "Inactivo"
 	},
 	{
-		"_id": 7,
-		"curp": "PEFP890305HASRLD02",
+		"curp": "DKER890305HASRLD02",
 		"first_name": "Ernesto",
 		"last_name": "Dominguez Khalo",
-		"birthday": "05-03-1989",
-		"genre": "M",
+		"birthday": "1989-03-07",
+		"gender": "M",
 		"email": "neto_dok@gmail.com",
-		"phone_number": "7895645102",
+		"phone_number": "7895645002",
 		"place_of_residence": "Puebla",
 		"blood_type": "O+",
 		"certified_file": "./docs/donor/7/file.pdf",
@@ -130,15 +123,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 1
+		"status": "Activo"
 	},
 	{
-		"_id": 8,
 		"curp": "KSVA970812MASPNT08",
 		"first_name": "Ana",
 		"last_name": "Kora Santos",
-		"birthday": "12-08-1997",
-		"genre": "F",
+		"birthday": "1997-08-12",
+		"gender": "F",
 		"email": "patricia_lf@gmail.com",
 		"phone_number": "7895642102",
 		"place_of_residence": "Puebla",
@@ -149,15 +141,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 1
+		"status": "Activo"
 	},
 	{
-		"_id": 9,
 		"curp": "JPIJ900217HCSRTI011",
 		"first_name": "Juana",
 		"last_name": "Morales Pinzon",
-		"birthday": "17-02-1990",
-		"genre": "F",
+		"birthday": "1990-02-17",
+		"gender": "F",
 		"email": "jumopi@gmail.com",
 		"phone_number": "7893245102",
 		"place_of_residence": "Puebla",
@@ -168,15 +159,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 0
+		"status": "Inactivo"
 	},
 	{
-		"_id": 10,
 		"curp": "GYTA940619HCSMNN011",
 		"first_name": "Antonia",
 		"last_name": "Gomez Dolores",
-		"birthday": "19-06-1994",
-		"genre": "F",
+		"birthday": "1994-06-19",
+		"gender": "F",
 		"email": "antony_godo@gmail.com",
 		"phone_number": "5593245102",
 		"place_of_residence": "Puebla",
@@ -187,15 +177,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 1
+		"status": "Activo"
 	},
 	{
-		"_id": 11,
 		"curp": "LKCA981219MNTYLL03",
 		"first_name": "John",
 		"last_name": "Licona Fernandez",
-		"birthday": "19-12-1998",
-		"genre": "M",
+		"birthday": "1998-12-19",
+		"gender": "M",
 		"email": "beta_reyesc@gmail.com",
 		"phone_number": "5593245102",
 		"place_of_residence": "Puebla",
@@ -206,15 +195,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 0
+		"status": "Inactivo"
 	},
 	{
-		"_id": 12,
 		"curp": "JAJA981219MNTYLL03",
 		"first_name": "Janeth",
 		"last_name": "Jimenez Casas",
-		"birthday": "19-12-1998",
-		"genre": "M",
+		"birthday": "1998-12-19",
+		"gender": "M",
 		"email": "jan_jica@gmail.com",
 		"phone_number": "5593245102",
 		"place_of_residence": "Puebla",
@@ -225,15 +213,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 1
+		"status": "Activo"
 	},
 	{
-		"_id": 13,
 		"curp": "GYTA940619HCSMNN011",
 		"first_name": "David",
 		"last_name": "Gomez Lora",
-		"birthday": "19-06-1994",
-		"genre": "M",
+		"birthday": "1994-06-19",
+		"gender": "M",
 		"email": "dav_gola@gmail.com",
 		"phone_number": "5593245102",
 		"place_of_residence": "Puebla",
@@ -244,15 +231,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 1
+		"status": "Activo"
 	},
 	{
-		"_id": 14,
 		"curp": "LKPL981219MNTYLL03",
 		"first_name": "Susana",
 		"last_name": "Lora Mendes",
-		"birthday": "19-12-1998",
-		"genre": "F",
+		"birthday": "1998-12-19",
+		"gender": "F",
 		"email": "susy_lome@gmail.com",
 		"phone_number": "5593245102",
 		"place_of_residence": "Puebla",
@@ -263,15 +249,14 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 0
+		"status": "Inactivo"
 	},
 	{
-		"_id": 15,
 		"curp": "JGHA981219MNTYLL03",
 		"first_name": "Polo",
 		"last_name": "Picazon Pineda",
-		"birthday": "19-12-1998",
-		"genre": "M",
+		"birthday": "1998-12-19",
+		"gender": "M",
 		"email": "jan_jica@gmail.com",
 		"phone_number": "5593245102",
 		"place_of_residence": "Puebla",
@@ -282,6 +267,6 @@
 			"question2": "answer_2",
 			"question3": "answer_3"
 		},
-		"status": 1
+		"status": "Activo"
 	}
 ]
