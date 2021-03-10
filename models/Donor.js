@@ -1,7 +1,7 @@
 // Donor.js
 // Clase que representa a un donador
 
-class Donor {
+/* class Donor {
 	constructor (id, curp, firstName, lastName, dateOfBirth, gender, email, phoneNumber, placeOfResidence, bloodType, certifiedFile, formAnswers) {
 		this.id = id;
 		this.curp = curp;
@@ -18,4 +18,133 @@ class Donor {
 	}
 }
 
-module.exports = Donor;
+module.exports = Donor; */
+
+const mongoose = require('mongoose');							// Importando mongoose
+const uniqueValidator = require("mongoose-unique-validator");	// Importando módulo mongoose-unique-validator.
+const crypto = require('crypto');								// Importando módulo crypto.
+const jwt = require('jsonwebtoken');							// Importando módulo jsonwebtoken.
+const secret = require('../config').secret;						// ????
+
+// Definir el schema para mongoose
+const DonorSchema = new mongoose.Schema({
+	curp: {
+		type: String,
+		unique: true,
+		uppercase: true,
+		required: [true, "El curp no puede estar vacio."],
+		match: ["/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/", "No es un curp valido."]
+	},
+	firstName: {
+		type: String,
+		required: true
+	},
+	lastName: {
+		type: String,
+		required: true
+	},
+	birthDay: {
+		type: String,
+		match: ["/^(?:[1][9]|[2][0-9])\d{2}\-(?:0[1-9]|1[0-2])\-(?:0[1-9]|[12]\d|3[01])$/", "El fomato del correcto es: YYYY-MM-DD"],
+		required: [true, "La fecha no puede ser vacia."]
+	},
+	gender: String,
+	email: {
+		type: String,
+		unique: true,
+		lowercase: true,
+		required: [true, "no puede estar vacío"],
+		match: [/\S+@\S+\.\S+/, "El formato del correo no es valido."],
+		index: true
+	},
+	phoneNumber: {
+		type: String,
+		match: ["/^\d{10}$/", "El número de telefono debe tener 10 digitos."]
+	},
+	placeOfResidence: String,
+	bloodType: {
+		type: String,
+		match: ["/^(?:A|B|AB|O)[+-]$$/", "El tipo de sangre no es valido."],
+		required: [true, "El tipo de sangre es obligatorio."],
+		index: true
+	},
+	certifiedFile: String,
+	formAnswers: {
+		type: String,
+		required: [true, "El formulario no puede estar vacio."]
+	},
+	hash: String,
+	salt: String,
+},
+{timestamps: true});
+
+DonorSchema.plugin(uniqueValidator, {message: "Donador ya registrado."});
+
+DonorSchema.methods.createPassword = function(password) {
+	this.salt = crypto
+		.randomBytes(16)
+		.toString("hex");
+	this.hash = crypto
+		.pbkdf2({
+			password: password,
+			salt: this.salt,
+			iterations: 10000,
+			keylen: 512,
+			digest: "sha512"
+		})
+		.toString("hex");
+}
+
+DonorSchema.methods.validatePassword = function(password) {
+	const hash = crypto
+		.pbkdf2({
+			password: password,
+			salt: this.salt,
+			iterations: 10000,
+			keylen: 512,
+			digest: "sha512"
+		})
+		.toString("hex");
+
+	return this.hash === hash;
+}
+
+DonorSchema.methods.generateJWT = function() {
+	const today = new Date();
+	const exp = new Date(today);
+	exp.setDate(today.getDate() + 60);
+
+	return jwt.sign({
+		id: this.id,
+		email: this.email,
+		exp: parseInt(exp.getTime() / 1000)
+	}, secret);
+}
+
+DonorSchema.methods.toAuthJSON = function() {
+	return {
+		email: this.email,
+		token: this.generateJWT()
+	};
+}
+
+DonorSchema.methods.publicData = function() {
+	return {
+		id: this.id,
+		curp: this.curp,
+		firstName: this.firstName,
+		lastName: this.lastName,
+		birthday: this.birthday,
+		gender: this.gender,
+		email: this.email,
+		phoneNumber: this.phoneNumber,
+		placeOfResidence: this.placeOfResidence,
+		bloodType: this.bloodType,
+		certifiedFile: this.certifiedFile,
+		formAnswers: this.formAnswers,
+		createdAt: this.createdAt,
+		updatedAt: this.updatedAt
+	};
+}
+
+mongoose.model("Donor", DonorSchema);
