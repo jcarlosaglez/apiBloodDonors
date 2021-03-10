@@ -63,13 +63,22 @@ function createReceiver(req, res, next) {
 }
 
 function readReceiver(req, res, next) {
-	Receiver.findById(req.user.id, (err, user) => {
-		if(!user || err) {
-			return res.status(401);
-		}
-		return res.json(user.publicData());
-	})
-	.catch(next);
+	if(req.params.id) {
+		Receiver.findById(req.params.id, (err, user) => {
+			if(!user || err) {
+				return res.status(401);
+			}
+			return res.json(user.publicData());
+		})
+		.catch(next);
+	}
+	else {
+		Receiver.find()
+			.then(request => {
+				res.send(request);
+			})
+			.catch(next);
+	}
 }
 
 function updateReceiver(req, res, next) {
@@ -78,7 +87,7 @@ function updateReceiver(req, res, next) {
 }
 
 function deleteReceiver(req, res) {
-	User.findOneAndDelete({_id: req.user.id})
+	Receiver.findOneAndDelete({_id: req.user.id})
 		.then((user) => {
 			res.status(200)
 				.send(`Donador ${req.params.id} eliminado: ${user}`);
@@ -94,7 +103,7 @@ function login(req, res, next) {
 		return res.status(422).json({errors: {password: "La contraseña no puede estar vacia."}});
 	}
 
-	passport.authenticate("local", {session: false}, function(err, user, info) {
+	passport.authenticate("local-receiver", {session: false}, function(err, user, info) {
 		if(err) {
 			return next(err);
 		}

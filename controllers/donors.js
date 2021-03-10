@@ -63,13 +63,22 @@ function createDonor(req, res, next) {
 }
 
 function readDonor(req, res, next) {
-	User.findById(req.user.id, (err, user) => {
-		if(!user || err) {
-			return res.status(401);
-		}
-		return res.json(user.publicData());
-	})
-	.catch(next);
+	if(req.params.id) {
+		Donor.findById(req.params.id, (err, user) => {
+			if(!user || err) {
+				return res.status(401);
+			}
+			return res.json(user.publicData());
+		})
+		.catch(next);
+	}
+	else {
+		Donor.find()
+			.then(request => {
+				res.send(request);
+			})
+			.catch(next);
+	}
 }
 
 function updateDonor(req, res, next) {
@@ -78,7 +87,7 @@ function updateDonor(req, res, next) {
 }
 
 function deleteDonor(req, res) {
-	User.findOneAndDelete({_id: req.user.id})
+	Donor.findOneAndDelete({_id: req.user.id})
 		.then((user) => {
 			res.status(200)
 				.send(`Donador ${req.params.id} eliminado: ${user}`);
@@ -94,7 +103,7 @@ function login(req, res, next) {
 		return res.status(422).json({errors: {password: "La contraseña no puede estar vacia."}});
 	}
 
-	passport.authenticate("local", {session: false}, function(err, user, info) {
+	passport.authenticate("local-donor", {session: false}, function(err, user, info) {
 		if(err) {
 			return next(err);
 		}

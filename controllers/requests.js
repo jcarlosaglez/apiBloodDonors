@@ -37,7 +37,8 @@ module.exports = {
 }; */
 
 const mongoose = require('mongoose');			// Importando mongoose
-const Request = mongoose.model("Request")
+const Request = mongoose.model("Request");
+const Receiver = mongoose.model("Receiver");
 
 function createRequest(req, res, next) {
 	const request = new Request(req.body);
@@ -51,9 +52,15 @@ function createRequest(req, res, next) {
 }
 
 function readRequest(req, res, next) {
+		    /* Libro.find({}, function(err, libros) {
+		        Autor.populate(libros, {path: "autor"},function(err, libros){
+		            res.status(200).send(libros);
+		        }); 
+		    }); */
 	if(req.params.id) {
 		Request.findById(req.params.id)
-				.populate("idReceiver", "firstName lastName email")
+				.populate("id_receiver", "first_name last_name email")
+				.populate("id_donor", "first_name last_name email")
 				.then(request => {
 					res.send(request)
 				})
