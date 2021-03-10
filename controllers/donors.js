@@ -1,4 +1,4 @@
-const Donor = require('../models/Donor')
+/* const Donor = require('../models/Donor')
 
 function createDonador(req, res) {
 	var donador = new Donor(req.body)
@@ -41,4 +41,77 @@ module.exports = {
 	updateDonador,
 	deleteDonador,
 	responseSolicitud
+}; */
+
+const mongoose = require('mongoose');			// Importando mongoose
+const Donor = mongoose.model('Donor');
+const passport = require('passport');
+
+function createDonor(req, res, next) {
+	const body = req.body;
+	const password = body.password;
+
+	delete body.password;
+
+	const user = new Donor(body);
+	user.createPassword(password);
+	user.save()
+		.then(user => {
+			return res.status(201).json(user.toAuthJSON());
+		})
+		.catch(next);
+}
+
+function readDonor(req, res, next) {
+	User.findById(req.user.id, (err, user) => {
+		if(!user || err) {
+			return res.status(401);
+		}
+		return res.json(user.publicData());
+	})
+	.catch(next);
+}
+
+function updateDonor(req, res, next) {
+	return res.status(100)
+				.send("TODO updateDonor");
+}
+
+function deleteDonor(req, res) {
+	User.findOneAndDelete({_id: req.user.id})
+		.then((user) => {
+			res.status(200)
+				.send(`Donador ${req.params.id} eliminado: ${user}`);
+		});
+}
+
+function login(req, res, next) {
+	if(!req.body.emal) {
+		return res.status(422).json({errors: {email: "El email no puede estar vacio."}});
+	}
+
+	if(!req.body.password) {
+		return res.status(422).json({errors: {password: "La contraseña no puede estar vacia."}});
+	}
+
+	passport.authenticate("local", {session: false}, function(err, user, info) {
+		if(err) {
+			return next(err);
+		}
+		if(user) {
+			user.token = user.generateJWT();
+			return res.json({user: user.toAuthJSON()});
+		}
+		else {
+			return res.status(422).json(info);
+		}
+	})
+}
+
+module.exports = {
+	createDonor,
+	readDonor,
+	updateDonor,
+	deleteDonor,
+	login
 };
