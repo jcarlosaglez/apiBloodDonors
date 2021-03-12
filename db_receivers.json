@@ -1,6 +1,6 @@
 [
 	{
-		"curp": "JMMA971027JHSFFU29",
+		"curp": "JAMA971027HGTFTX19",
 		"first_name": "Juan",
 		"last_name": "Miranda Pasquett",
 		"birthday": "1997-10-27",
@@ -10,27 +10,27 @@
 		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "JPPJ980907HGRRS9C0",
+		"curp": "JEPJ980907HGTRSC00",
 		"first_name": "Jorge",
 		"last_name": "Perez Jijon",
 		"birthday": "1998-09-07",
 		"gender": "M",
-		"email": "jm@gmail.com",
+		"email": "jpeji@gmail.com",
 		"phone_number": "7332890322",
 		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "JPAM990122HPSHC230",
+		"curp": "JAMP990122HPLHCC30",
 		"first_name": "Jorge",
 		"last_name": "Patiño Morales",
 		"birthday": "1999-01-22",
 		"gender": "M",
 		"email": "pm_j@gmail.com",
-		"phone_number": "744937312",
+		"phone_number": "7449373102",
 		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "BCUR990615H98HCC90",
+		"curp": "BURC990615HHGHCC90",
 		"first_name": "Bryam",
 		"last_name": "Cruz Rodriguez",
 		"birthday": "1999-06-15",
@@ -40,7 +40,7 @@
 		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "DIAC950719H98PCC03",
+		"curp": "DIAC950719HMNPCC03",
 		"first_name": "Angel",
 		"last_name": "Diaz Cortez",
 		"birthday": "1995-07-19",
@@ -50,7 +50,7 @@
 		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "DABR980305H98HCC90",
+		"curp": "DABR980305HTLHCC90",
 		"first_name": "Dallana",
 		"last_name": "Blanco Rodriguez",
 		"birthday": "1998-03-05",
@@ -60,7 +60,7 @@
 		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "HEGH980420H98HCA90",
+		"curp": "HEGH980420MZSHCB90",
 		"first_name": "Grisell",
 		"last_name": "Hernandez Hernandez",
 		"birthday": "1998-04-20",
@@ -70,7 +70,7 @@
 		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "AADE941212H98HCA90",
+		"curp": "AADE941212MNEHCX90",
 		"first_name": "Elia",
 		"last_name": "Alvarado Dominguez",
 		"birthday": "1994-12-12",
@@ -80,7 +80,7 @@
 		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "MADA980621H98HCA90",
+		"curp": "MADA980621HCHHCN90",
 		"first_name": "Araceli",
 		"last_name": "Martinez Dominguez",
 		"birthday": "1998-06-21",
@@ -90,7 +90,7 @@
 		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "OESA980614DA99H98H",
+		"curp": "OESA980614MOCHHH98",
 		"first_name": "America",
 		"last_name": "Olea Soto",
 		"birthday": "1998-06-14",
@@ -103,110 +103,100 @@
 		"curp": "PEFP890305HASRLD02",
 		"first_name": "Pedro",
 		"last_name": "Perez Flores",
-		"birthday": "05-03-1989",
+		"birthday": "1989-03-05",
 		"gender": "M",
 		"email": "pedropf@gmail.com",
 		"phone_number": "7895645102",
-		"place_of_residence": "Puebla",
-		"status": 1
+		"place_of_residence": "Puebla"
 	},
 	{
 		"curp": "JAGE981219MNTYLL03",
 		"first_name": "Jeremy",
 		"last_name": "Fosa Lopez",
-		"birthday": "19-12-1998",
+		"birthday": "1998-12-19",
 		"gender": "M",
 		"email": "jerem_fola@gmail.com",
 		"phone_number": "5593245102",
-		"place_of_residence": "Puebla",
-		"status": 0
+		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "LKCA981219MNTYLL03",
+		"curp": "LACA981219MNTYLL03",
 		"first_name": "John",
 		"last_name": "Licona Fernandez",
-		"birthday": "19-12-1998",
+		"birthday": "1998-12-19",
 		"gender": "M",
 		"email": "john@gmail.com",
 		"phone_number": "5593245102",
-		"place_of_residence": "Puebla",
-		"status": 1
+		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "LKLK980519MNTYLL03",
+		"curp": "LOLK980519MNTYLL03",
 		"first_name": "Leonardo",
 		"last_name": "Licona Limon",
-		"birthday": "19-12-1998",
+		"birthday": "1998-12-19",
 		"gender": "M",
 		"email": "leon_lili@gmail.com",
 		"phone_number": "5593245102",
-		"place_of_residence": "Puebla",
-		"status": 1
+		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "LKJK980519MNTYLL03",
+		"curp": "LIJK980519MNTYLL03",
 		"first_name": "John",
 		"last_name": "Licona Fernandez",
-		"birthday": "19-12-1998",
+		"birthday": "1998-12-19",
 		"gender": "M",
 		"email": "beta_reyesc@gmail.com",
 		"phone_number": "5593245102",
-		"place_of_residence": "Puebla",
-		"status": 0
+		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "LLHK980519MNTYLL03",
+		"curp": "LEHK980519MNTYLL03",
 		"first_name": "Karime",
 		"last_name": "Fernandez Fernandez",
-		"birthday": "19-12-1998",
+		"birthday": "1998-12-19",
 		"gender": "F",
 		"email": "kafe_fe@gmail.com",
 		"phone_number": "5593245102",
-		"place_of_residence": "Puebla",
-		"status": 1
+		"place_of_residence": "Puebla"
 	},
 	{
 		"curp": "LELK980519MNTYLL03",
 		"first_name": "Laura",
 		"last_name": "Leon Eslava",
-		"birthday": "19-12-1998",
+		"birthday": "1998-12-19",
 		"gender": "F",
 		"email": "la_lees@gmail.com",
 		"phone_number": "5593245102",
-		"place_of_residence": "Puebla",
-		"status": 1
+		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "AKFY980519MNTYLL03",
+		"curp": "AOFY980519MNTYLL03",
 		"first_name": "Yunue",
 		"last_name": "Soria Andres",
-		"birthday": "19-12-1998",
+		"birthday": "1998-12-19",
 		"gender": "F",
 		"email": "yu_soan@gmail.com",
 		"phone_number": "5593245102",
-		"place_of_residence": "Puebla",
-		"status": 1
+		"place_of_residence": "Puebla"
 	},
 	{
 		"curp": "AINA980519MNTYLL03",
 		"first_name": "Araceli",
 		"last_name": "Alpes Vite",
-		"birthday": "19-12-1998",
+		"birthday": "1998-12-19",
 		"gender": "F",
 		"email": "alvi_ar@gmail.com",
 		"phone_number": "5593245102",
-		"place_of_residence": "Puebla",
-		"status": 1
+		"place_of_residence": "Puebla"
 	},
 	{
-		"curp": "OKYG980519MNTYLL03",
+		"curp": "OOYG980519MNTYLL03",
 		"first_name": "Carmen",
 		"last_name": "Morales Mota",
-		"birthday": "19-12-1998",
+		"birthday": "1998-12-19",
 		"gender": "F",
 		"email": "ca_momo@gmail.com",
 		"phone_number": "5593245102",
-		"place_of_residence": "Puebla",
-		"status": 0
+		"place_of_residence": "Puebla"
 	}
 ]
