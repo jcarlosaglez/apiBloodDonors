@@ -7,13 +7,13 @@ router.get("/", (req, res) => {
 });
 
 // Rutas para Donor.js
-router.use("/donor", require("./donors"));
+router.use("/donors", require("./donors"));
 
 // Rutas para Receiver.js
-router.use("/receiver", require("./receivers"));
+router.use("/receivers", require("./receivers"));
 
 // Rutas para Request.js
-router.use("/request", require("./requests"));
+router.use("/requests", require("./requests"));
 
 // Exportar las rutas
 module.exports = router;
