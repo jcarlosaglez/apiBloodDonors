@@ -36,7 +36,7 @@
 		"status": "Activo"
 	},
 	{
-		"curp": "JAML900217HCSRTI011",
+		"curp": "JAML900217HCSRTKY1",
 		"first_name": "Luis",
 		"last_name": "Jardines Mota",
 		"birthday": "1990-02-17",
@@ -54,7 +54,7 @@
 		"status": "Activo"
 	},
 	{
-		"curp": "GOLA940619HCSMNN011",
+		"curp": "GOLA940619HCSMNN01",
 		"first_name": "Andres",
 		"last_name": "Gomez Luna",
 		"birthday": "1994-06-19",
@@ -108,7 +108,7 @@
 		"status": "Inactivo"
 	},
 	{
-		"curp": "DKER890305HASRLD02",
+		"curp": "DIER890305HASRDD02",
 		"first_name": "Ernesto",
 		"last_name": "Dominguez Khalo",
 		"birthday": "1989-03-07",
@@ -126,12 +126,12 @@
 		"status": "Activo"
 	},
 	{
-		"curp": "KSVA970812MASPNT08",
+		"curp": "KAVA970812MASPNT08",
 		"first_name": "Ana",
 		"last_name": "Kora Santos",
 		"birthday": "1997-08-12",
 		"gender": "F",
-		"email": "patricia_lf@gmail.com",
+		"email": "ks_ana@gmail.com",
 		"phone_number": "7895642102",
 		"place_of_residence": "Puebla",
 		"blood_type": "B+",
@@ -144,7 +144,7 @@
 		"status": "Activo"
 	},
 	{
-		"curp": "JPIJ900217HCSRTI011",
+		"curp": "JIIJ900217HCSRTKH1",
 		"first_name": "Juana",
 		"last_name": "Morales Pinzon",
 		"birthday": "1990-02-17",
@@ -162,7 +162,7 @@
 		"status": "Inactivo"
 	},
 	{
-		"curp": "GYTA940619HCSMNN011",
+		"curp": "GOTA940619HCSMNN01",
 		"first_name": "Antonia",
 		"last_name": "Gomez Dolores",
 		"birthday": "1994-06-19",
@@ -180,12 +180,12 @@
 		"status": "Activo"
 	},
 	{
-		"curp": "LKCA981219MNTYLL03",
+		"curp": "LICA981219MNTYLL03",
 		"first_name": "John",
 		"last_name": "Licona Fernandez",
 		"birthday": "1998-12-19",
 		"gender": "M",
-		"email": "beta_reyesc@gmail.com",
+		"email": "j_life@gmail.com",
 		"phone_number": "5593245102",
 		"place_of_residence": "Puebla",
 		"blood_type": "A+",
@@ -216,7 +216,7 @@
 		"status": "Activo"
 	},
 	{
-		"curp": "GYTA940619HCSMNN011",
+		"curp": "GUTP940619HCSMNN01",
 		"first_name": "David",
 		"last_name": "Gomez Lora",
 		"birthday": "1994-06-19",
@@ -234,7 +234,7 @@
 		"status": "Activo"
 	},
 	{
-		"curp": "LKPL981219MNTYLL03",
+		"curp": "LAPL981219MNTYLL03",
 		"first_name": "Susana",
 		"last_name": "Lora Mendes",
 		"birthday": "1998-12-19",
@@ -252,12 +252,12 @@
 		"status": "Inactivo"
 	},
 	{
-		"curp": "JGHA981219MNTYLL03",
+		"curp": "JEHA981219MNTYLL03",
 		"first_name": "Polo",
 		"last_name": "Picazon Pineda",
 		"birthday": "1998-12-19",
 		"gender": "M",
-		"email": "jan_jica@gmail.com",
+		"email": "popi_pi@gmail.com",
 		"phone_number": "5593245102",
 		"place_of_residence": "Puebla",
 		"blood_type": "A-",
