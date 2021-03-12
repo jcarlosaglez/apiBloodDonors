@@ -29,7 +29,7 @@ router.post("/", createDonor);
 router.get("/", auth.optional, readDonor);
 router.get("/:id", auth.optional, readDonor);
 router.put("/:id", auth.required, updateDonor);
-router.delete("/:id", auth.required, deleteDonor);
-router.post("/", login);
+router.delete("/", auth.required, deleteDonor);
+router.post("/login", login);
 
 module.exports = router;
