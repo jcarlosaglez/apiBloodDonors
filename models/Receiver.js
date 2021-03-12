@@ -59,6 +59,10 @@ const ReceiverSchema = new mongoose.Schema({
 		match: [/^\d{10}$/, "El número de telefono debe tener 10 digitos."]
 	},
 	place_of_residence: String,
+	status: {
+		type: String,
+		enum: ["Activo", "Inactivo"]
+	},
 	hash: String,
 	salt: String,
 },
@@ -71,25 +75,13 @@ ReceiverSchema.methods.createPassword = function(password) {
 		.randomBytes(16)
 		.toString("hex");
 	this.hash = crypto
-		.pbkdf2Sync({
-			password: password,
-			salt: this.salt,
-			iterations: 10000,
-			keylen: 512,
-			digest: "sha512"
-		})
+		.pbkdf2Sync(password, this.salt, 10000, 512, "sha512")
 		.toString("hex");
 }
 
 ReceiverSchema.methods.validatePassword = function(password) {
 	const hash = crypto
-		.pbkdf2Sync({
-			password: password,
-			salt: this.salt,
-			iterations: 10000,
-			keylen: 512,
-			digest: "sha512"
-		})
+		.pbkdf2Sync(password, this.salt, 10000, 512, "sha512")
 		.toString("hex");
 
 	return this.hash === hash;
@@ -125,6 +117,7 @@ ReceiverSchema.methods.publicData = function() {
 		email: this.email,
 		phone_number: this.phone_number,
 		place_of_residence: this.place_of_residence,
+		status: this.status,
 		createdAt: this.createdAt,
 		updatedAt: this.updatedAt
 	};
