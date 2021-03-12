@@ -48,10 +48,16 @@ const Receiver = mongoose.model("Receiver");
 const passport = require("passport");
 
 function createReceiver(req, res, next) {
+	if(!req.body.password) {
+		return res.status(422)
+				.json({errors: {password: "La contraseña no puede estar vacia."+req.curp}});
+	}
+
 	const body = req.body;
 	const password = body.password;
 
 	delete body.password;
+	body.status = "Activo";
 
 	const user = new Receiver(body);
 	user.createPassword(password);
@@ -74,28 +80,77 @@ function readReceiver(req, res, next) {
 	}
 	else {
 		Receiver.find()
-			.then(request => {
-				res.send(request);
+			.then(users => {
+				res.json(users.map(user => user.publicData()));
 			})
 			.catch(next);
 	}
 }
 
 function updateReceiver(req, res, next) {
-	res.status(200)
-		.send("TODO updateReceiver");
+	Receiver.findById(req.user.id).then(user => {
+		if (!user) {
+			return res.sendStatus(401);
+		}
+
+		let newInfo = req.body
+
+		if(Object.entries(newInfo).length === 0) {
+			return res.status(422)
+					.send("No hay cambios a efectuar");
+		}
+
+		if (typeof newInfo.curp !== 'undefined')
+			user.curp = newInfo.curp
+		if (typeof newInfo.first_name !== 'undefined')
+			user.first_name = newInfo.first_name
+		if (typeof newInfo.last_name !== 'undefined')
+			user.last_name = newInfo.last_name
+		if (typeof newInfo.birthday !== 'undefined')
+			user.birthday = newInfo.birthday
+		if (typeof newInfo.email !== 'undefined')
+			user.email = newInfo.email
+		if (typeof newInfo.phone_number !== 'undefined')
+			user.phone_number = newInfo.phone_number
+		if (typeof newInfo.place_of_residence !== 'undefined')
+			user.place_of_residence = newInfo.place_of_residence
+		if (typeof newInfo.password !== 'undefined')
+			user.crearPassword(newInfo.password)
+
+		user.save()
+			.then(updatedUser => {
+				res.status(201)
+					.json(updatedUser.publicData())
+			})
+			.catch(next)
+	}).catch(next)
 }
 
 function deleteReceiver(req, res) {
-	Receiver.findOneAndDelete({_id: req.user.id})
+	// Eliminar completamente
+	/* Receiver.findOneAndDelete({_id: req.user.id})
 		.then((user) => {
 			res.status(200)
 				.send(`Donador ${req.params.id} eliminado: ${user}`);
-		});
+		}); */
+	// Eliminar cambiando status a inactivo
+	Receiver.findById(req.user.id).then(user => {
+		if (!user) {
+			return res.sendStatus(401);
+		}
+		
+		user.status = "Inactivo"
+
+		user.save()
+			.then(updatedUser => {
+				res.status(201)
+					.json(updatedUser.publicData())
+			})
+	})
 }
 
 function login(req, res, next) {
-	if(!req.body.emal) {
+	if(!req.body.email) {
 		return res.status(422).json({errors: {email: "El email no puede estar vacio."}});
 	}
 
@@ -114,7 +169,7 @@ function login(req, res, next) {
 		else {
 			return res.status(422).json(info);
 		}
-	})
+	})(req, res, next);
 }
 
 module.exports = {
