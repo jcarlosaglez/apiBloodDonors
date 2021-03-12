@@ -29,7 +29,7 @@ app.use(session({
 // Configurar mongoose
 const mongoose = require("mongoose");
 
-const connection_string = require("./config/mongo.js").connection_string;
+const connection_string = process.env.MONGODB_URI ? process.env.MONGODB_URI : require("./config/mongo.js").connection_string;
 
 /* mongoose.connect(
     connection_string,
@@ -39,23 +39,21 @@ const connection_string = require("./config/mongo.js").connection_string;
 	}
 ); */
 
-mongoose.connect(
-	connection_string,
-	{
+mongoose.connect(connection_string, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 		useCreateIndex: true,
 		useFindAndModify: false
 	})
-	.then(()=>{
+	.then(() => {
 		console.log(`connection to database established`)
 	})
-	.catch(err=>{
+	.catch(err => {
 		console.log(`db error ${err.message}`);
 		process.exit(-1)
- })
+	});
 
-mongoose.set("debug", true);
+mongoose.set("debug", require("./config").mongoDebug);
 
 require("./models/Donor");
 require("./models/Receiver");
