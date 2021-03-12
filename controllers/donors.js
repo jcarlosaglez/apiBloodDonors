@@ -57,6 +57,7 @@ function createDonor(req, res, next) {
 	const password = body.password;
 
 	delete body.password;
+	body.status = "Activo";
 
 	const user = new Donor(body);
 	user.createPassword(password);
@@ -80,7 +81,7 @@ function readDonor(req, res, next) {
 	else {
 		Donor.find()
 			.then(users => {
-				res.json(users.map(user=>user.publicData()));
+				res.json(users.map(user => user.publicData()));
 			})
 			.catch(next);
 	}
