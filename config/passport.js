@@ -23,7 +23,7 @@ passport.use("local-receiver", new LocalStrategy({
 		usernameField: "email",
 		passwordField: "password"
 	}, function (email, password, done) {
-			Receiver.findOne({email: email})
+		Receiver.findOne({email: email})
 			.then(function (user) {
 				if(!user || !user.validatePassword(password)) {
 					return done(null, false, {errors: {"email o contraseña": "No coinciden"}});
