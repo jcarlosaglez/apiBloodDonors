@@ -82,8 +82,8 @@ function readReceiver(req, res, next) {
 }
 
 function updateReceiver(req, res, next) {
-	return res.status(100)
-				.send("TODO updateReceiver");
+	res.status(200)
+		.send("TODO updateReceiver");
 }
 
 function deleteReceiver(req, res) {

@@ -48,6 +48,11 @@ const Donor = mongoose.model('Donor');
 const passport = require('passport');
 
 function createDonor(req, res, next) {
+	if(!req.body.password) {
+		return res.status(422)
+				.json({errors: {password: "La contraseña no puede estar vacia."+req.curp}});
+	}
+
 	const body = req.body;
 	const password = body.password;
 
@@ -82,15 +87,15 @@ function readDonor(req, res, next) {
 }
 
 function updateDonor(req, res, next) {
-	return res.status(100)
-				.send("TODO updateDonor");
+	res.status(200)
+		.send("TODO updateDonor");
 }
 
 function deleteDonor(req, res) {
 	Donor.findOneAndDelete({_id: req.user.id})
 		.then((user) => {
 			res.status(200)
-				.send(`Donador ${req.params.id} eliminado: ${user}`);
+				.send(`Donador ${req.user.id} eliminado: ${user.publicData}`);
 		});
 }
 
