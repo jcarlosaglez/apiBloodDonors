@@ -79,28 +79,79 @@ function readDonor(req, res, next) {
 	}
 	else {
 		Donor.find()
-			.then(request => {
-				res.send(request);
+			.then(users => {
+				res.json(users.map(user=>user.publicData()));
 			})
 			.catch(next);
 	}
 }
 
 function updateDonor(req, res, next) {
-	res.status(200)
-		.send("TODO updateDonor");
+	Donor.findById(req.user.id).then(user => {
+		if (!user) {
+			return res.sendStatus(401);
+		}
+
+		let newInfo = req.body
+
+		if(Object.entries(newInfo).length === 0) {
+			return res.status(422)
+					.send("No hay cambios a efectuar");
+		}
+
+		if (typeof newInfo.curp !== 'undefined')
+			user.curp = newInfo.curp
+		if (typeof newInfo.first_name !== 'undefined')
+			user.first_name = newInfo.first_name
+		if (typeof newInfo.last_name !== 'undefined')
+			user.last_name = newInfo.last_name
+		if (typeof newInfo.birthday !== 'undefined')
+			user.birthday = newInfo.birthday
+		if (typeof newInfo.email !== 'undefined')
+			user.email = newInfo.email
+		if (typeof newInfo.phone_number !== 'undefined')
+			user.phone_number = newInfo.phone_number
+		if (typeof newInfo.place_of_residence !== 'undefined')
+			user.place_of_residence = newInfo.place_of_residence
+		if (typeof newInfo.status !== 'undefined')
+			user.status = newInfo.status
+		if (typeof newInfo.password !== 'undefined')
+			user.crearPassword(newInfo.password)
+
+		user.save()
+			.then(updatedUser => {
+				res.status(201)
+					.json(updatedUser.publicData())
+			})
+			.catch(next)
+	}).catch(next)
 }
 
 function deleteDonor(req, res) {
-	Donor.findOneAndDelete({_id: req.user.id})
+	// Eliminar completamente
+	/* Donor.findOneAndDelete({_id: req.user.id})
 		.then((user) => {
 			res.status(200)
 				.send(`Donador ${req.user.id} eliminado: ${user.publicData}`);
-		});
+		}); */
+	// Eliminar cambiando status a inactivo
+	Donor.findById(req.user.id).then(user => {
+		if (!user) {
+			return res.sendStatus(401);
+		}
+		
+		user.status = "Inactivo"
+
+		user.save()
+			.then(updatedUser => {
+				res.status(201)
+					.json(updatedUser.publicData())
+			})
+	})
 }
 
 function login(req, res, next) {
-	if(!req.body.emal) {
+	if(!req.body.email) {
 		return res.status(422).json({errors: {email: "El email no puede estar vacio."}});
 	}
 
@@ -119,7 +170,7 @@ function login(req, res, next) {
 		else {
 			return res.status(422).json(info);
 		}
-	})
+	})(req, res, next);
 }
 
 module.exports = {
