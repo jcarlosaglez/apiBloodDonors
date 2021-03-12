@@ -95,13 +95,7 @@ DonorSchema.methods.createPassword = function(password) {
 
 DonorSchema.methods.validatePassword = function(password) {
 	const hash = crypto
-		.pbkdf2Sync({
-			password: password,
-			salt: this.salt,
-			iterations: 10000,
-			keylen: 512,
-			digest: "sha512"
-		})
+		.pbkdf2Sync(password, this.salt, 10000, 512, "sha512")
 		.toString("hex");
 
 	return this.hash === hash;
