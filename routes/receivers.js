@@ -28,8 +28,8 @@ var auth = require("./auth");
 router.post("/", createReceiver);
 router.get("/", auth.optional, readReceiver);
 router.get("/:id", auth.optional, readReceiver);
-router.put("/:id", auth.optional, updateReceiver);
-router.delete("/:id", auth.optional, deleteReceiver);
-router.post("/", login);
+router.put("/:id", auth.required, updateReceiver);
+router.delete("/", auth.required, deleteReceiver);
+router.post("/login", login);
 
 module.exports = router;
