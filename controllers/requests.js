@@ -38,15 +38,15 @@ module.exports = {
 
 const mongoose = require('mongoose');			// Importando mongoose
 const Request = mongoose.model("Request");
-const Receiver = mongoose.model("Receiver");
 
 function createRequest(req, res, next) {
 	const request = new Request(req.body);
-	request.idReceiver = req.user.id;
+	request.id_receiver = req.user.id;
 	request.status = "Enviada";
 	request.save()
 		.then(request => {
-			res.status(201).send(request);
+			res.status(201)
+				.send(request);
 		})
 		.catch(next);
 }
@@ -76,13 +76,13 @@ function readRequest(req, res, next) {
 }
 
 function updateRequest(req, res, next) {
-	return res.status(100)
-				.send("TODO updateRequest");
+	res.status(200)
+		.send("TODO updateRequest");
 }
 
-function deleteRequest(req, res, next) {
-	return res.status(100)
-				.send("TODO deleteRequest");
+function deleteRequest(req, res) {
+	res.status(200)
+		.send("TODO deleteRequest");
 }
 
 module.exports = {
