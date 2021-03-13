@@ -78,6 +78,29 @@ function readDonor(req, res, next) {
 		})
 		.catch(next);
 	}
+	else if(req.query.page && req.query.limit) {
+		const limit = req.query.limit > 0 ? req.query.limit : 5;
+		const page = req.query.page > 0 ? req.query.page : 1;
+		Donor.find()
+			.sort("last_name")
+			.limit(limit * 1)
+			.skip((page - 1) * limit)
+			.then(donors => {
+				Donor.countDocuments((err, count) => {
+					if(err) {
+						return res.sendStatus(401);
+					}
+					return res.status(200)
+						.json({
+							donors: donors.map(donor => donor.publicData()),
+							totalRegisters: count,
+							totalPages: Math.ceil(count / limit),
+							currentPage: page*1
+						});
+				});
+			})
+			.catch(next);
+	}
 	else {
 		Donor.find()
 			.then(users => {

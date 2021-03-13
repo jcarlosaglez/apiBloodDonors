@@ -81,6 +81,31 @@ function readRequest(req, res, next) {
 				})
 				.catch(next);
 	}
+	else if(req.query.page && req.query.limit) {
+		const limit = req.query.limit > 0 ? req.query.limit : 5;
+		const page = req.query.page > 0 ? req.query.page : 1;
+		Request.find()
+			.populate("id_receiver", "first_name last_name email")
+			.populate("id_donor", "first_name last_name email")
+			.sort("required_blood_type")
+			.limit(limit * 1)
+			.skip((page - 1) * limit)
+			.then(requests => {
+				Request.countDocuments((err, count) => {
+					if(err) {
+						return res.sendStatus(401);
+					}
+					return res.status(200)
+						.json({
+							requests: requests.map(request => request.publicData()),
+							totalRegisters: count,
+							totalPages: Math.ceil(count / limit),
+							currentPage: page*1
+						});
+				});
+			})
+			.catch(next);
+	}
 	else {
 		Request.find()
 			.populate("id_receiver", "first_name last_name email")
