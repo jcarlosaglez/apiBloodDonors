@@ -109,6 +109,7 @@ DonorSchema.methods.generateJWT = function() {
 	return jwt.sign({
 		id: this.id,
 		email: this.email,
+		type: "donor-user",
 		exp: parseInt(exp.getTime() / 1000)
 	}, secret);
 }

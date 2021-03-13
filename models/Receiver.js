@@ -95,6 +95,7 @@ ReceiverSchema.methods.generateJWT = function() {
 	return jwt.sign({
 		id: this.id,
 		email: this.email,
+		type: "receiver-user",
 		exp: parseInt(exp.getTime() / 1000)
 	}, secret);
 }
