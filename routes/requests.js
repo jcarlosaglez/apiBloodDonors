@@ -22,10 +22,10 @@ const {
 
 var auth = require("./auth");
 
-router.post("/", auth.optional, createRequest);
+router.post("/", auth.required, createRequest);
 router.get("/", auth.optional, readRequest);
 router.get("/:id", auth.optional, readRequest);
-router.put("/:id", auth.optional, updateRequest);
-router.delete("/:id", auth.optional, deleteRequest);
+router.put("/:id", auth.required, updateRequest);
+router.delete("/:id", auth.required, deleteRequest);
 
 module.exports = router;
