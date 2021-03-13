@@ -38,25 +38,40 @@ module.exports = {
 
 const mongoose = require('mongoose');			// Importando mongoose
 const Request = mongoose.model("Request");
+const Donor = mongoose.model("Donor");
+const Receiver = mongoose.model("Receiver");
 
 function createRequest(req, res, next) {
+	if(!(req.user.type === "receiver-user"))  {
+		return res.status(401)
+			.json({errors: {invalid_user: "Solo los receptores pueden crear una solicitud."}});
+	}
+
 	const request = new Request(req.body);
-	request.id_receiver = req.user.id;
-	request.status = "Enviada";
-	request.save()
-		.then(request => {
-			res.status(201)
-				.send(request);
-		})
-		.catch(next);
+
+	Donor.findById(request.id_donor, (err, donor) => {
+		if(!donor || err) {
+			return res.status(404)
+				.json({errors: {donor_not_found: "El donador solicitado no fue encontrado."}});
+		}
+		if(donor.status === "Inactivo") {
+			return res.status(422)
+				.json({errors: {inactive_donor: "El donador solicitado no fue encontrado."}});
+		}
+
+		request.id_receiver = req.user.id;
+		request.status = "Enviada";
+		request.save()
+			.then(request => {
+				res.status(201)
+					.send(request);
+			})
+			.catch(next);
+	})
+	.catch(next);
 }
 
 function readRequest(req, res, next) {
-		    /* Libro.find({}, function(err, libros) {
-		        Autor.populate(libros, {path: "autor"},function(err, libros){
-		            res.status(200).send(libros);
-		        }); 
-		    }); */
 	if(req.params.id) {
 		Request.findById(req.params.id)
 				.populate("id_receiver", "first_name last_name email")
@@ -68,21 +83,88 @@ function readRequest(req, res, next) {
 	}
 	else {
 		Request.find()
-			.then(request => {
-				res.send(request);
+			.populate("id_receiver", "first_name last_name email")
+			.populate("id_donor", "first_name last_name email")
+			.then(requests => {
+				res.send(requests.map(request => request.publicData()));
 			})
 			.catch(next);
 	}
 }
 
 function updateRequest(req, res, next) {
-	res.status(200)
-		.send("TODO updateRequest");
+	let user = req.user.type === "receiver-user" ? "id_receiver" : "id_donor";
+	Request.findById(req.params.id).then(request => {
+		if (!request) {
+			return res.sendStatus(401);
+		}
+
+		if(req.user.id !== request[user].toString()) {
+			return res.status(401)
+					.json({errors: {invalid_user: "Solo el donador o receptor puede modificar la solicitud."}});
+		}
+
+		let newInfo = req.body
+
+		if(Object.entries(newInfo).length === 0) {
+			return res.status(422)
+					.send("No hay cambios a efectuar");
+		}
+
+		if(user === "id_receiver"){
+			if (typeof newInfo.required_blood_type !== 'undefined')
+				request.required_blood_type = newInfo.required_blood_type
+			if (typeof newInfo.message !== 'undefined')
+				request.message = newInfo.message
+			if (typeof newInfo.status !== 'undefined')
+				request.status = "Cancelada"
+		}
+
+		if(user === "id_receiver"){
+			if (typeof newInfo.status !== 'undefined')
+				request.status = newInfo.status === "Aceptada" ? "Aceptada" : "Rechazada";
+		}
+
+		request.save(function (err, savedRequest) {
+				if(err) {
+					return res.send(err);
+				}
+				const opts = [
+					{ path: 'id_receiver', select: 'first_name last_name email' },
+					{ path: 'id_donor', select: 'first_name last_name email' }
+				];
+				savedRequest = Request.populate(savedRequest, opts);
+				savedRequest.then(request => {
+					return res.status(201).json(request.publicData())
+				})
+			})
+	}).catch(next);
 }
 
 function deleteRequest(req, res) {
-	res.status(200)
-		.send("TODO deleteRequest");
+	if(!(req.user.type === "receiver-user"))  {
+		return res.status(401)
+			.json({errors: {invalid_user: "Solo los receptores pueden eliminar solicitudES."}});
+	}
+
+	Request.findById(req.params.id).then(request => {
+		if (!request) {
+			return res.sendStatus(401);
+		}
+
+		if(req.user.id !== request.id_receiver.toString()) {
+			return res.status(401)
+					.json({errors: {invalid_user: "Solo puedes eliminar tus propias solicitudes."}});
+		}
+		
+		request.status = "Cancelada"
+
+		request.save()
+			.then(deletedRequest => {
+				res.status(201)
+					.json(deletedRequest.publicData())
+			})
+	})
 }
 
 module.exports = {
