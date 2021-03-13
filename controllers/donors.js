@@ -117,7 +117,7 @@ function updateDonor(req, res, next) {
 		if (typeof newInfo.status !== 'undefined')
 			user.status = newInfo.status
 		if (typeof newInfo.password !== 'undefined')
-			user.crearPassword(newInfo.password)
+			user.createPassword(newInfo.password)
 
 		user.save()
 			.then(updatedUser => {

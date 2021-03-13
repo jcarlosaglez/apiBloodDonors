@@ -115,7 +115,7 @@ function updateReceiver(req, res, next) {
 		if (typeof newInfo.place_of_residence !== 'undefined')
 			user.place_of_residence = newInfo.place_of_residence
 		if (typeof newInfo.password !== 'undefined')
-			user.crearPassword(newInfo.password)
+			user.createPassword(newInfo.password)
 
 		user.save()
 			.then(updatedUser => {
