@@ -27,6 +27,7 @@ var auth = require('./auth');
 
 router.post("/", createDonor);
 router.get("/", auth.optional, readDonor);
+router.get("/pagination", auth.optional, readDonor);
 router.get("/:id", auth.optional, readDonor);
 router.put("/:id", auth.required, updateDonor);
 router.delete("/", auth.required, deleteDonor);
