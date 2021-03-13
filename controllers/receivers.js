@@ -142,9 +142,9 @@ function deleteReceiver(req, res) {
 		user.status = "Inactivo"
 
 		user.save()
-			.then(updatedUser => {
+			.then(deletedUser => {
 				res.status(201)
-					.json(updatedUser.publicData())
+					.json(deletedUser.publicData())
 			})
 	})
 }
