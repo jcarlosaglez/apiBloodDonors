@@ -14,6 +14,7 @@
 module.exports = Request; */
 
 const mongoose = require('mongoose');			// Importando mongoose
+const Donor = mongoose.model("Donor");
 
 // Definir el schema para mongoose
 const RequestSchema = new mongoose.Schema({
@@ -25,16 +26,16 @@ const RequestSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Donor"
 	},
-	requiredBloodType: {
+	required_blood_type: {
 		type: String,
-		match: ["/^(?:A|B|AB|O)[+-]$$/", "El tipo de sangre no es valido."],
+		match: [/^(?:A|B|AB|O)[+-]$/, "El tipo de sangre no es valido."],
 		required: [true, "El tipo de sangre es obligatorio."],
 		index: true
 	},
 	message: String,
 	status: {
 		type: String,
-		enum: ["Enviada", "Aceptada", "Rechazada", "Cancelada", "Finalizada"]
+		enum: ["Enviada", "Aceptada", "Rechazada", "Cancelada"]
 	}
 },
 {timestamps: true});
@@ -44,7 +45,7 @@ RequestSchema.methods.publicData = function() {
 		id: this.id,
 		id_receiver: this.id_receiver,
 		id_donor: this.id_donor,
-		requiredBloodType: this.requiredBloodType,
+		required_blood_type: this.required_blood_type,
 		message: this.message,
 		status: this.status,
 		createdAt: this.createdAt,
