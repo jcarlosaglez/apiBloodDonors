@@ -196,11 +196,34 @@ function login(req, res, next) {
 		}
 	})(req, res, next);
 }
+async function selects(req, res){
+    const id = req.params.id; 			//obtenemos el Id del usuarop
+	const select = req.params.select;	//Obtenemos los campos que requiere
+    try {
+		if(id){
+			let paramets = select.split(",");
+			let limit = paramets.length;
+			let fields = {};
+			for(var i = 0; i < limit; i++) {
+			  fields[paramets[i]] = 1;
+			}
+			const donorsBD = await Donor.findOne({ _id: id },fields);
+			console.log(donorsBD);
+			return res.json(donorsBD);
+
+		}else{
+			return error;
+		}
+    } catch (error) {
+        console.log('erroooooooooorrr', error);
+    }
+};
 
 module.exports = {
 	createDonor,
 	readDonor,
 	updateDonor,
 	deleteDonor,
-	login
+	login,
+	selects
 };

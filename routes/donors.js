@@ -20,10 +20,12 @@ const {
 	readDonor,
 	updateDonor,
 	deleteDonor,
-	login
+	login,
+	selects
 } = require('../controllers/donors');
 
 var auth = require('./auth');
+const { route } = require('./receivers');
 
 router.post("/", createDonor);
 router.get("/", auth.optional, readDonor);
@@ -31,6 +33,8 @@ router.get("/pagination", auth.optional, readDonor);
 router.get("/:id", auth.optional, readDonor);
 router.put("/:id", auth.required, updateDonor);
 router.delete("/", auth.required, deleteDonor);
+router.get("/:id/:select", selects);
 router.post("/login", login);
+
 
 module.exports = router;
