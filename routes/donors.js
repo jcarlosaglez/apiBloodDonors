@@ -18,6 +18,7 @@ router.post('/', responseSolicitud); */
 const {
 	createDonor,
 	readDonor,
+	readDonorByFields,
 	updateDonor,
 	deleteDonor,
 	login
@@ -29,6 +30,8 @@ router.post("/", createDonor);
 router.get("/", auth.optional, readDonor);
 router.get("/pagination", auth.optional, readDonor);
 router.get("/:id", auth.optional, readDonor);
+router.get("/fields/:fieldSet", auth.optional, readDonorByFields);
+router.get("/fields/:id", auth.optional, readDonorByFields);
 router.put("/:id", auth.required, updateDonor);
 router.delete("/", auth.required, deleteDonor);
 router.post("/login", login);
