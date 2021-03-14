@@ -69,8 +69,13 @@ function createDonor(req, res, next) {
 }
 
 function readDonor(req, res, next) {
+	let fields = req.query.fields || "";
+	fields = fields.split(",");
+
+	console.log(req.params.id);
+
 	if(req.params.id) {
-		Donor.findById(req.params.id, (err, user) => {
+		Donor.findById(req.params.id, fields, (err, user) => {
 			if(!user || err) {
 				return res.status(401);
 			}
@@ -78,36 +83,40 @@ function readDonor(req, res, next) {
 		})
 		.catch(next);
 	}
-	else if(req.query.page && req.query.limit) {
-		const limit = req.query.limit > 0 ? req.query.limit : 5;
-		const page = req.query.page > 0 ? req.query.page : 1;
-		Donor.find()
-			.sort("last_name")
-			.limit(limit * 1)
-			.skip((page - 1) * limit)
-			.then(donors => {
-				Donor.countDocuments((err, count) => {
-					if(err) {
-						return res.sendStatus(401);
-					}
-					return res.status(200)
-						.json({
-							donors: donors.map(donor => donor.publicData()),
-							totalRegisters: count,
-							totalPages: Math.ceil(count / limit),
-							currentPage: page*1
-						});
-				});
-			})
-			.catch(next);
-	}
 	else {
-		Donor.find()
+		Donor.find(null, fields)
 			.then(users => {
 				res.json(users.map(user => user.publicData()));
 			})
 			.catch(next);
 	}
+}
+
+function readDonorsByPages(req, res, next) {
+	let fields = req.query.fields || "";
+	fields = fields.split(",");
+	const limit = req.query.limit > 0 ? req.query.limit : 5;
+	const page = req.query.page > 0 ? req.query.page : 1;
+
+	Donor.find(null, fields)
+		.sort("last_name")
+		.limit(limit * 1)
+		.skip((page - 1) * limit)
+		.then(donors => {
+			Donor.countDocuments((err, count) => {
+				if(err) {
+					return res.sendStatus(401);
+				}
+				return res.status(200)
+					.json({
+						donors: donors.map(donor => donor.publicData()),
+						totalRegisters: count,
+						totalPages: Math.ceil(count / limit),
+						currentPage: page*1
+					});
+			});
+		})
+		.catch(next);
 }
 
 function updateDonor(req, res, next) {
@@ -196,37 +205,17 @@ function login(req, res, next) {
 		}
 	})(req, res, next);
 }
-async function selects(req, res){
-    const id = req.params.id; 			//obtenemos el Id del usuarop
-	const select = req.params.select;	//Obtenemos los campos que requiere
-    try {
-		if(id){
-			let paramets = select.split(",");
-			let limit = paramets.length;
-			let fields = {};
-			for(var i = 0; i < limit; i++) {
-			  fields[paramets[i]] = 1;
-			}
-			const donorsBD = await Donor.findOne({ _id: id },fields);
-			console.log(donorsBD);
-			return res.json(donorsBD);
 
-		}else{
-			return error;
-		}
-    } catch (error) {
-        console.log('erroooooooooorrr', error);
-    }
-};
 async function search(req, res){
-	const campo = req.params.campo;
-	const atributo = req.params.atributo;
-	let field={};
+	const { field, value } = req.query;
+	let filter = {};
+
 	try{
-		field[campo]=atributo;
-		const donorsBD = await Donor.find(field);
-		return res.json(donorsBD);
-	} catch (error){
+		filter[field] = value;
+		const donorsBD = await Donor.find(filter);
+		return res.json(donorsBD.map(donor => donor.publicData()));
+	}
+	catch (error){
         console.log('erroooooooooorrr', error);
 	}
 }
@@ -234,9 +223,9 @@ async function search(req, res){
 module.exports = {
 	createDonor,
 	readDonor,
+	readDonorsByPages,
 	updateDonor,
 	deleteDonor,
 	login,
-	selects,
 	search
 };

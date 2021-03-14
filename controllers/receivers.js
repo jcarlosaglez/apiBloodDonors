@@ -69,8 +69,11 @@ function createReceiver(req, res, next) {
 }
 
 function readReceiver(req, res, next) {
+	let fields = req.query.fields || "";
+	fields = fields.split(",");
+
 	if(req.params.id) {
-		Receiver.findById(req.params.id, (err, user) => {
+		Receiver.findById(req.params.id, fields, (err, user) => {
 			if(!user || err) {
 				return res.status(401);
 			}
@@ -78,36 +81,40 @@ function readReceiver(req, res, next) {
 		})
 		.catch(next);
 	}
-	else if(req.query.page && req.query.limit) {
-		const limit = req.query.limit > 0 ? req.query.limit : 5;
-		const page = req.query.page > 0 ? req.query.page : 1;
-		Receiver.find()
-			.sort("last_name")
-			.limit(limit * 1)
-			.skip((page - 1) * limit)
-			.then(receivers => {
-				Receiver.countDocuments((err, count) => {
-					if(err) {
-						return res.sendStatus(401);
-					}
-					return res.status(200)
-						.json({
-							receivers: receivers.map(receiver => receiver.publicData()),
-							totalRegisters: count,
-							totalPages: Math.ceil(count / limit),
-							currentPage: page*1
-						});
-				});
-			})
-			.catch(next);
-	}
 	else {
-		Receiver.find()
+		Receiver.find(null, fields)
 			.then(users => {
 				res.json(users.map(user => user.publicData()));
 			})
 			.catch(next);
 	}
+}
+
+function readReceiversByPages(req, res, next) {
+	let fields = req.query.fields || "";
+	fields = fields.split(",");
+	const limit = req.query.limit > 0 ? req.query.limit : 5;
+	const page = req.query.page > 0 ? req.query.page : 1;
+
+	Receiver.find(null, fields)
+		.sort("last_name")
+		.limit(limit * 1)
+		.skip((page - 1) * limit)
+		.then(receivers => {
+			Receiver.countDocuments((err, count) => {
+				if(err) {
+					return res.sendStatus(401);
+				}
+				return res.status(200)
+					.json({
+						receivers: receivers.map(receiver => receiver.publicData()),
+						totalRegisters: count,
+						totalPages: Math.ceil(count / limit),
+						currentPage: page*1
+					});
+			});
+		})
+		.catch(next);
 }
 
 function updateReceiver(req, res, next) {
@@ -193,47 +200,28 @@ function login(req, res, next) {
 			return res.status(422).json(info);
 		}
 	})(req, res, next);
-};
-async function selects(req, res){
-    const id = req.params.id;			//obtenemos el Id del usuarop
-	const select = req.params.select;	//Obtenemos los campos que requiere
-    try {
-		if(id){
-			let paramets = select.split(",");
-			let limit = paramets.length;
-			let fields = {} ;
-			for(var i = 0; i < limit; i++) {
-			  fields[paramets[i]] = 1 ;
-			}
-			const receiverBD = await Receiver.findOne({ _id: id },fields);
-			console.log(receiverBD);
-			return res.json(receiverBD);
+}
 
-		}else{
-			return error;
-		}
-    } catch (error) {
-        console.log('erroooooooooorrr', error);
-    }
-};
 async function search(req, res){
-	const campo = req.params.campo;
-	const atributo = req.params.atributo;
-	let field={};
+	const { field, value } = req.query;
+	let filter = {};
+	
 	try{
-		field[campo]=atributo;
-		const receiverBD = await Receiver.find(field);
-		return res.json(receiverBD);
-	} catch (error){
+		filter[field] = value;
+		const receiverBD = await Receiver.find(filter);
+		return res.json(receiverBD.map(receiver => receiver.publicData()));
+	}
+	catch (error){
         console.log('erroooooooooorrr', error);
 	}
 }
+
 module.exports = {
 	createReceiver,
 	readReceiver,
+	readReceiversByPages,
 	updateReceiver,
 	deleteReceiver,
-	selects,
 	search,
 	login
 };
