@@ -18,9 +18,9 @@ router.post('/', requestDonador); */
 const {
 	createReceiver,
 	readReceiver,
+	readReceiversByPages,
 	updateReceiver,
 	deleteReceiver,
-    selects,
     search,
 	login
 } = require('../controllers/receivers');
@@ -29,12 +29,11 @@ var auth = require("./auth");
 
 router.post("/", createReceiver);
 router.get("/", auth.optional, readReceiver);
-router.get("/pagination", auth.optional, readReceiver);
+router.get("/pagination", auth.optional, readReceiversByPages);
 router.get("/:id", auth.optional, readReceiver);
+router.get("/search", search);
 router.put("/:id", auth.required, updateReceiver);
 router.delete("/", auth.required, deleteReceiver);
-router.get("/:id/:select", selects);
-router.get("/search/:campo/:atributo", search)
 router.post("/login", login);
 
 module.exports = router;

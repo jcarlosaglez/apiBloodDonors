@@ -18,25 +18,22 @@ router.post('/', responseSolicitud); */
 const {
 	createDonor,
 	readDonor,
+	readDonorsByPages, 
 	updateDonor,
 	deleteDonor,
 	login,
-	selects, 
 	search
 } = require('../controllers/donors');
 
 var auth = require('./auth');
-const { route } = require('./receivers');
 
 router.post("/", createDonor);
 router.get("/", auth.optional, readDonor);
-router.get("/pagination", auth.optional, readDonor);
+router.get("/pagination", auth.optional, readDonorsByPages);
 router.get("/:id", auth.optional, readDonor);
+router.get("/search", search);
 router.put("/:id", auth.required, updateDonor);
 router.delete("/", auth.required, deleteDonor);
-router.get("/:id/:select", selects);
-router.get("/search/:campo/:atributo", search)
 router.post("/login", login);
-
 
 module.exports = router;

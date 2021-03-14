@@ -16,6 +16,7 @@ router.delete('/:id', deleteRequest); */
 const {
 	createRequest,
 	readRequest,
+	readRequestsByPages,
 	updateRequest,
 	deleteRequest,
 	search
@@ -25,11 +26,10 @@ var auth = require("./auth");
 
 router.post("/", auth.required, createRequest);
 router.get("/", auth.optional, readRequest);
-router.get("/pagination", auth.optional, readRequest);
+router.get("/pagination", auth.optional, readRequestsByPages);
 router.get("/:id", auth.optional, readRequest);
+router.get("/search", search);
 router.put("/:id", auth.required, updateRequest);
 router.delete("/:id", auth.required, deleteRequest);
-router.get("/search/:campo/:atributo", search)
-
 
 module.exports = router;
