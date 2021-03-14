@@ -110,6 +110,19 @@ function readDonor(req, res, next) {
 	}
 }
 
+function readDonorByFields(req, res, next) {
+	let fieldSet = req.params.fieldSet.split(",");
+	let fields = ['curp', 'first_name', 'last_name', 'birthday', 'gender', 'email', 'phone_number', 'place_of_residence', 'blood_type', 'certified_file', 'form_answers', 'status', 'updatedAt', 'createdAt'];
+	fieldSet = fieldSet.filter(field => fields.indexOf(field) > -1 );
+
+	Donor.find()
+		.select(fieldSet.toString().replace(/,/g, " "))
+		.then(users => {
+			res.json(users);
+		})
+		.catch(next);
+}
+
 function updateDonor(req, res, next) {
 	Donor.findById(req.user.id).then(user => {
 		if (!user) {
@@ -200,6 +213,7 @@ function login(req, res, next) {
 module.exports = {
 	createDonor,
 	readDonor,
+	readDonorByFields,
 	updateDonor,
 	deleteDonor,
 	login
