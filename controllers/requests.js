@@ -191,10 +191,22 @@ function deleteRequest(req, res) {
 			})
 	})
 }
-
+async function search(req, res){
+	const campo = req.params.campo;
+	const atributo = req.params.atributo;
+	let field={};
+	try{
+		field[campo]=atributo;
+		const requestBD = await Request.find(field);
+		return res.json(requestBD);
+	} catch (error){
+        console.log('erroooooooooorrr', error);
+	}
+}
 module.exports = {
 	createRequest,
 	readRequest,
 	updateRequest,
-	deleteRequest
+	deleteRequest,
+	search
 };

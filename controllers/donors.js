@@ -218,6 +218,18 @@ async function selects(req, res){
         console.log('erroooooooooorrr', error);
     }
 };
+async function search(req, res){
+	const campo = req.params.campo;
+	const atributo = req.params.atributo;
+	let field={};
+	try{
+		field[campo]=atributo;
+		const donorsBD = await Donor.find(field);
+		return res.json(donorsBD);
+	} catch (error){
+        console.log('erroooooooooorrr', error);
+	}
+}
 
 module.exports = {
 	createDonor,
@@ -225,5 +237,6 @@ module.exports = {
 	updateDonor,
 	deleteDonor,
 	login,
-	selects
+	selects,
+	search
 };

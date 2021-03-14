@@ -216,11 +216,24 @@ async function selects(req, res){
         console.log('erroooooooooorrr', error);
     }
 };
+async function search(req, res){
+	const campo = req.params.campo;
+	const atributo = req.params.atributo;
+	let field={};
+	try{
+		field[campo]=atributo;
+		const receiverBD = await Receiver.find(field);
+		return res.json(receiverBD);
+	} catch (error){
+        console.log('erroooooooooorrr', error);
+	}
+}
 module.exports = {
 	createReceiver,
 	readReceiver,
 	updateReceiver,
 	deleteReceiver,
 	selects,
+	search,
 	login
 };
