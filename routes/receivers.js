@@ -20,6 +20,7 @@ const {
 	readReceiver,
 	updateReceiver,
 	deleteReceiver,
+    selects,
 	login
 } = require('../controllers/receivers');
 
@@ -31,6 +32,7 @@ router.get("/pagination", auth.optional, readReceiver);
 router.get("/:id", auth.optional, readReceiver);
 router.put("/:id", auth.required, updateReceiver);
 router.delete("/", auth.required, deleteReceiver);
+router.get("/:id/:select", selects);
 router.post("/login", login);
 
 module.exports = router;

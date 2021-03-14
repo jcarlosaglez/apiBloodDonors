@@ -193,12 +193,34 @@ function login(req, res, next) {
 			return res.status(422).json(info);
 		}
 	})(req, res, next);
-}
+};
+async function selects(req, res){
+    const id = req.params.id;			//obtenemos el Id del usuarop
+	const select = req.params.select;	//Obtenemos los campos que requiere
+    try {
+		if(id){
+			let paramets = select.split(",");
+			let limit = paramets.length;
+			let fields = {} ;
+			for(var i = 0; i < limit; i++) {
+			  fields[paramets[i]] = 1 ;
+			}
+			const receiverBD = await Receiver.findOne({ _id: id },fields);
+			console.log(receiverBD);
+			return res.json(receiverBD);
 
+		}else{
+			return error;
+		}
+    } catch (error) {
+        console.log('erroooooooooorrr', error);
+    }
+};
 module.exports = {
 	createReceiver,
 	readReceiver,
 	updateReceiver,
 	deleteReceiver,
+	selects,
 	login
 };
