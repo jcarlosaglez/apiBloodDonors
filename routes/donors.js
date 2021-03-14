@@ -21,7 +21,8 @@ const {
 	updateDonor,
 	deleteDonor,
 	login,
-	selects
+	selects, 
+	search
 } = require('../controllers/donors');
 
 var auth = require('./auth');
@@ -34,6 +35,7 @@ router.get("/:id", auth.optional, readDonor);
 router.put("/:id", auth.required, updateDonor);
 router.delete("/", auth.required, deleteDonor);
 router.get("/:id/:select", selects);
+router.get("/search/:campo/:atributo", search)
 router.post("/login", login);
 
 

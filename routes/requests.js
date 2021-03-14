@@ -17,7 +17,8 @@ const {
 	createRequest,
 	readRequest,
 	updateRequest,
-	deleteRequest
+	deleteRequest,
+	search
 } = require('../controllers/requests');
 
 var auth = require("./auth");
@@ -28,5 +29,7 @@ router.get("/pagination", auth.optional, readRequest);
 router.get("/:id", auth.optional, readRequest);
 router.put("/:id", auth.required, updateRequest);
 router.delete("/:id", auth.required, deleteRequest);
+router.get("/search/:campo/:atributo", search)
+
 
 module.exports = router;
