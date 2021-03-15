@@ -72,8 +72,6 @@ function readDonor(req, res, next) {
 	let fields = req.query.fields || "";
 	fields = fields.split(",");
 
-	console.log(req.params.id);
-
 	if(req.params.id) {
 		Donor.findById(req.params.id, fields, (err, user) => {
 			if(!user || err) {
