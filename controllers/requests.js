@@ -41,7 +41,7 @@ function readRequest(req, res, next) {
 				.populate("id_receiver", "first_name last_name email")
 				.populate("id_donor", "first_name last_name email")
 				.then(request => {
-					res.send(request)
+					res.send(request.publicData())
 				})
 				.catch(next);
 	}
