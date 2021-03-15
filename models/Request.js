@@ -1,20 +1,6 @@
 // Reques.js
 // Clase que representa a una solicitud a un donador
-
-/* class Request {
-	constructor (id, idReceiver, idDonor, requiredBloodType, message) {
-		this.id = id;
-		this.idReceiver = idReceiver;
-		this.idDonor = idDonor;
-		this.requiredBloodType = requiredBloodType;
-		this.message = message;
-	}
-}
-
-module.exports = Request; */
-
-const mongoose = require('mongoose');			// Importando mongoose
-const Donor = mongoose.model("Donor");
+const mongoose = require('mongoose');
 
 // Definir el schema para mongoose
 const RequestSchema = new mongoose.Schema({

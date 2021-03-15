@@ -1,22 +1,6 @@
 // Receiver.js
 // Clase que representa a un receptor
 
-/* class Receiver {
-	constructor (id, curp, first_name, last_name, dateOfBirth, gender, email, phone_number, place_of_residence) {
-		this.id = id;
-		this.curp = curp;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
-		this.email = email;
-		this.phone_number = phone_number;
-		this.place_of_residence = place_of_residence;
-	}
-}
-
-module.exports = Receiver; */
-
 const mongoose = require('mongoose');							// Importando mongoose
 const uniqueValidator = require("mongoose-unique-validator");	// Importando módulo mongoose-unique-validator.
 const crypto = require('crypto');								// Importando módulo crypto.

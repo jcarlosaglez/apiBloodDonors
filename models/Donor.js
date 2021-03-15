@@ -1,25 +1,5 @@
 // Donor.js
 // Clase que representa a un donador
-
-/* class Donor {
-	constructor (id, curp, first_name, last_name, dateOfBirth, gender, email, phone_number, place_of_residence, blood_type, certified_file, form_answers) {
-		this.id = id;
-		this.curp = curp;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
-		this.email = email;
-		this.phone_number = phone_number;
-		this.place_of_residence = place_of_residence;
-		this.blood_type = blood_type;
-		this.certified_file = certified_file;
-		this.form_answers = form_answers;
-	}
-}
-
-module.exports = Donor; */
-
 const mongoose = require('mongoose');							// Importando mongoose
 const uniqueValidator = require("mongoose-unique-validator");	// Importando módulo mongoose-unique-validator.
 const crypto = require('crypto');								// Importando módulo crypto.
