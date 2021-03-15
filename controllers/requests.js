@@ -205,7 +205,9 @@ async function search(req, res){
 	
 	try{
 		filter[field] = value;
-		const requestBD = await Request.find(filter);
+		const requestBD = await Request.find(filter)
+									.populate("id_receiver", "first_name last_name email")
+									.populate("id_donor", "first_name last_name email");
 		return res.json(requestBD.map(request => request.publicData()));
 	}
 	catch (error){
