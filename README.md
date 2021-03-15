@@ -22,13 +22,18 @@ Elegimos utilizar MONGODB debido a su estructura. Por otra parte, nos permite ha
 
 # ¿Cómo utilizar BloodDonors?
 Es necesario para conectarse y trabajar con la API, utilizar una aplicación de consultas como lo es **Insomnia** o **Postman**. Los requerimientos y rutas pueden encontrarse en:
-[BloodDonors](https://blood-donors-v1.herokuapp.com/v1)
+[Swager](https://app.swaggerhub.com/apis/sebasgar13/Blood-Donors/1.0.0)
+
 
 Donde podremos encontrar los parámetros y el cuerpo de las consultas para un correcto funcionamiento:
 
 - /donors
 - /receivers
 - /requests
+
+También para acceder mediante QR:
+
+![alt text](https://github.com/devnull404/TODO/blob/develop/assets/doc/PORTADABEDU.svg)
 
 
 
