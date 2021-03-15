@@ -10,13 +10,25 @@ Los requerimientos para el proyecto son crear una API que pueda realizar las ope
 
 Por lo que es posible registrar tanto a donantes como a receptores.
 
+# Heroku
+El links para hacer uso de BloodDonors es el siguiente: 
+
+[BloodDonors](https://blood-donors-v1.herokuapp.com/v1)
+
 # ¿Por qué MONGODB?
 Elegimos utilizar MONGODB debido a su estructura. Por otra parte, nos permite hacer consultas rápidas y eficaces ya que esperamos que el crecimiento y la utilidad de esta API genera una gran demanda, además de que los requisitos o parámetros de la información de los usuarios cambia dependiendo de muchos factores, y es por esto que necesitamos una base de datos flexible. Finalmente, nos permitiría relacionarlo con Heroku de manera más versatil promoviendo la rapidez en el deploy, y dejándonos tiempo para hacer pruebas y encontrar bugs en nuestra API.
 
 
 
 # ¿Cómo utilizar BloodDonors?
+Es necesario para conectarse y trabajar con la API, utilizar una aplicación de consultas como lo es **Insomnia** o **Postman**. Los requerimientos y rutas pueden encontrarse en:
+[BloodDonors](https://blood-donors-v1.herokuapp.com/v1)
 
+Donde podremos encontrar los parámetros y el cuerpo de las consultas para un correcto funcionamiento:
+
+- /donors
+- /receivers
+- /requests
 
 
 
