@@ -1,6 +1,126 @@
 ## PROYECTO FINAL MÓDULO BACKEND BEDU-SANTANDER
 ![alt text](https://github.com/devnull404/TODO/blob/develop/assets/doc/PORTADABEDU.svg)
 
+# Historias de Usuario.
+- Como donador quiero registrarme para poder donar
+- Como donador quiero marcar cuando esté dispuesto o indispuesto a donar
+para que los que busquen lo sepan
+- Como donador quiero darme de baja definitivamente para que ya no me
+puedan mandar solicitudes
+- Como donador quiero decidir si aceptar o no para contestar a las solicitudes
+- Como receptor quiero registrarme para hacer una solicitud de donación
+- Como receptor quiero buscar a posibles donadores para saber si hay un
+posible donador
+- Como receptor quiero hacer una solicitud a un donador para saber si está
+dispuesto a donarme a mí
+- Como receptor quiero editar mis datos para tener mi información
+actualizada
+- Como receptor quiero eliminar mi registro 
+
+¿Qué tipos de usuario tendrá nuestro sistema?
+2 tipos de usuarios:
+Donadores
+Receptores¿Qué acciones puede realizar cada usuario?
+
+Donador:
+Registrarse
+Darse de baja temporalmente
+Darse de baja definitivamente
+Editar sus datos personales
+Aceptar una solicitud de donación
+
+Receptor:
+Registrarse
+Editar sus datos personales
+Crear una solicitud de donación
+¿Qué información se necesita?
+
+Donador:
+Datos personales (Nombre, apellidos, CURP, Fecha de nacimiento, sexo,
+correo, teléfono lugar de residencia, tipo de sangre)
+Certificado medico
+Respuestas a cuestionario de evaluación
+
+Receptor:
+Datos personales (Nombre, apellidos, CURP, Fecha de nacimiento, sexo,
+lugar de residencia, correo, teléfono)
+
+¿Cuáles son las principales entidades?
+
+Donador
+Receptor
+Solicitud de donación¿Qué características tiene cada entidad?
+
+Donador:
+id (CURP)
+nombre(s)
+apellidos
+fechaNacimiento
+sexo
+correo
+teléfono
+lugarResidencia
+tipo de sangre
+archivoCertificado
+respuestasCuestionario
+
+Receptor:
+id (CURP)
+nombre(s)
+apellidos
+fechaNacimiento
+sexo
+lugarResidencia
+correo
+teléfono
+
+Solicitud de donación:
+id
+idReceptor
+idDonador
+tipoSangreRequerida
+comentarios¿Qué funcionalidades tiene cada entidad?
+
+Donador:
+createDonador()
+readDonador()
+readDonadores()
+updateDonador()
+deleteDonador()
+responseSolicitud()
+// Para registrarse
+// Para leer a un donador por su id
+// Para leer a todos los donadores
+// Para actualizar sus datos
+// Para dar de baja a un donador
+// Para aceptar o declinar una solicitud
+
+Receptor:
+createDonador()
+readDonador()
+readDonadores()
+updateDonador()
+deleteDonador()
+requestDonador()
+// Para registrarse
+// Para leer a un receptor por su id
+// Para leer a todos los receptores
+// Para actualizar sus datos
+// Para dar de baja a un receptor
+// Para crear una solicitud a un donador
+
+Solicitud de donación:
+createSolicitud()
+readSolicitud()
+readSolicitudes()
+updateSolicitud()
+deleteSolicitud()
+// Cuando un usuario crea una solicitud
+// Para leer una solicitud
+// Para leer todas las solicitudes
+// Para cuando un donador acepta o rechaza la solicitud
+// Para eliminar la solicitud
+
 
 # ¿Cómo funciona nuestra API?
 Los requerimientos para el proyecto son crear una API que pueda realizar las operaciones básicas (CRUD), por lo que elegimos una API que se encargue de manejar el registro, modificación, vista y eliminado de tanto donadores de sangre, y los respectivos pacientes que la requieren. Entonces, nuestra API se encuentra seccionada en dos partes:
