@@ -33,7 +33,7 @@ Donde podremos encontrar los parámetros y el cuerpo de las consultas para un co
 
 También para acceder mediante QR:
 
-![alt text](https://github.com/devnull404/TODO/blob/develop/assets/doc/PORTADABEDU.svg)
+![alt text](https://github.com/killjoy157/apiBloodDonors/blob/main/QRcode.jpeg)
 
 
 
