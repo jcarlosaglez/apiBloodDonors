@@ -72,8 +72,11 @@ function createRequest(req, res, next) {
 }
 
 function readRequest(req, res, next) {
+	let fields = req.query.fields || "";
+	fields = fields.split(",");
+
 	if(req.params.id) {
-		Request.findById(req.params.id)
+		Request.findById(req.params.id, fields)
 				.populate("id_receiver", "first_name last_name email")
 				.populate("id_donor", "first_name last_name email")
 				.then(request => {
@@ -81,33 +84,8 @@ function readRequest(req, res, next) {
 				})
 				.catch(next);
 	}
-	else if(req.query.page && req.query.limit) {
-		const limit = req.query.limit > 0 ? req.query.limit : 5;
-		const page = req.query.page > 0 ? req.query.page : 1;
-		Request.find()
-			.populate("id_receiver", "first_name last_name email")
-			.populate("id_donor", "first_name last_name email")
-			.sort("required_blood_type")
-			.limit(limit * 1)
-			.skip((page - 1) * limit)
-			.then(requests => {
-				Request.countDocuments((err, count) => {
-					if(err) {
-						return res.sendStatus(401);
-					}
-					return res.status(200)
-						.json({
-							requests: requests.map(request => request.publicData()),
-							totalRegisters: count,
-							totalPages: Math.ceil(count / limit),
-							currentPage: page*1
-						});
-				});
-			})
-			.catch(next);
-	}
 	else {
-		Request.find()
+		Request.find(null, fields)
 			.populate("id_receiver", "first_name last_name email")
 			.populate("id_donor", "first_name last_name email")
 			.then(requests => {
@@ -115,6 +93,35 @@ function readRequest(req, res, next) {
 			})
 			.catch(next);
 	}
+}
+
+function readRequestsByPages(req, res, next) {
+	let fields = req.query.fields || "";
+	fields = fields.split(",");
+	const limit = req.query.limit > 0 ? req.query.limit : 5;
+	const page = req.query.page > 0 ? req.query.page : 1;
+
+	Request.find(null, fields)
+		.populate("id_receiver", "first_name last_name email")
+		.populate("id_donor", "first_name last_name email")
+		.sort("required_blood_type")
+		.limit(limit * 1)
+		.skip((page - 1) * limit)
+		.then(requests => {
+			Request.countDocuments((err, count) => {
+				if(err) {
+					return res.sendStatus(401);
+				}
+				return res.status(200)
+					.json({
+						requests: requests.map(request => request.publicData()),
+						totalRegisters: count,
+						totalPages: Math.ceil(count / limit),
+						currentPage: page*1
+					});
+			});
+		})
+		.catch(next);
 }
 
 function updateRequest(req, res, next) {
@@ -192,9 +199,27 @@ function deleteRequest(req, res) {
 	})
 }
 
+async function search(req, res){
+	const { field, value } = req.query;
+	let filter = {};
+	
+	try{
+		filter[field] = value;
+		const requestBD = await Request.find(filter)
+									.populate("id_receiver", "first_name last_name email")
+									.populate("id_donor", "first_name last_name email");
+		return res.json(requestBD.map(request => request.publicData()));
+	}
+	catch (error){
+        console.log('erroooooooooorrr', error);
+	}
+}
+
 module.exports = {
 	createRequest,
 	readRequest,
+	readRequestsByPages,
 	updateRequest,
-	deleteRequest
+	deleteRequest,
+	search
 };
