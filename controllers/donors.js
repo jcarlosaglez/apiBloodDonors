@@ -28,7 +28,7 @@ function createDonor(req, res, next) {
 					errors[key] = error.errors[key].message;
 				});
 
-				return res.status(400).send(errors);
+				return res.status(400).json({errors: errors});
 			}
 			res.status(500).send("Something went wrong");
 		});
@@ -128,7 +128,7 @@ function updateDonor(req, res, next) {
 						errors[key] = error.errors[key].message;
 					});
 	
-					return res.status(400).send(errors);
+					return res.status(400).json({errors: errors});
 				}
 				res.status(500).send("Something went wrong");
 			});
