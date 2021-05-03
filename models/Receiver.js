@@ -18,11 +18,11 @@ const ReceiverSchema = new mongoose.Schema({
 	},
 	first_name: {
 		type: String,
-		required: true
+		required: [true, "El nombre no puede estar vacio."]
 	},
 	last_name: {
 		type: String,
-		required: true
+		required: [true, "Los apellidos no pueden estar vacios"]
 	},
 	birthday: {
 		type: String,
@@ -34,7 +34,7 @@ const ReceiverSchema = new mongoose.Schema({
 		type: String,
 		unique: true,
 		lowercase: true,
-		required: [true, "no puede estar vacío"],
+		required: [true, "El correo no puede estar vacio."],
 		match: [/\S+@\S+\.\S+/, "El formato del correo no es valido."],
 		index: true
 	},
