@@ -5,7 +5,7 @@ const passport = require("passport");			// Importando passport para las sesiones
 function createReceiver(req, res, next) {
 	if(!req.body.password) {
 		return res.status(422)
-				.json({errors: {password: "La contraseña no puede estar vacia."+req.curp}});
+				.json({errors: {password: "La contraseña no puede estar vacia."});
 	}
 
 	const body = req.body;
