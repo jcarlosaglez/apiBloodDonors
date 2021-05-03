@@ -25,7 +25,7 @@ const DonorSchema = new mongoose.Schema({
 	},
 	birthday: {
 		type: String,
-		match: [/^(?:[1][9]|[2][0-9])\d{2}\-(?:0[1-9]|1[0-2])\-(?:0[1-9]|[12]\d|3[01])$/, "El fomato del correcto es: YYYY-MM-DD"],
+		match: [/^(?:[1][9]|[2][0-9])\d{2}\-(?:1[0-2]|(0)?[1-9])\-(?:0[1-9]|[12]\d|3[01])$/, "El fomato del correcto es: YYYY-MM-DD"],
 		required: [true, "La fecha no puede ser vacia."]
 	},
 	gender: String,
