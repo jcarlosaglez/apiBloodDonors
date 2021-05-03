@@ -52,7 +52,7 @@ const ReceiverSchema = new mongoose.Schema({
 },
 {timestamps: true});
 
-ReceiverSchema.plugin(uniqueValidator, {message: "Receptor ya registrado."});
+ReceiverSchema.plugin(uniqueValidator, {message: "El {PATH} ya esta en uso."});
 
 ReceiverSchema.methods.createPassword = function(password) {
 	this.salt = crypto

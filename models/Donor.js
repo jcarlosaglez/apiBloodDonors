@@ -62,7 +62,7 @@ const DonorSchema = new mongoose.Schema({
 },
 {timestamps: true});
 
-DonorSchema.plugin(uniqueValidator, {message: "Donador ya registrado."});
+DonorSchema.plugin(uniqueValidator, {message: "El {PATH} ya esta en uso."});
 
 DonorSchema.methods.createPassword = function(password) {
 	this.salt = crypto

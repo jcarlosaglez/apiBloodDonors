@@ -20,7 +20,18 @@ function createReceiver(req, res, next) {
 		.then(user => {
 			return res.status(201).json(user.toAuthJSON());
 		})
-		.catch(next);
+		.catch(error => {
+			if (error.name === "ValidationError") {
+				let errors = {};
+
+				Object.keys(error.errors).forEach((key) => {
+					errors[key] = error.errors[key].message;
+				});
+
+				return res.status(400).send(errors);
+			}
+			res.status(500).send("Something went wrong");
+		});
 }
 
 function readReceiver(req, res, next) {
@@ -107,7 +118,18 @@ function updateReceiver(req, res, next) {
 				res.status(201)
 					.json(updatedUser.publicData())
 			})
-			.catch(next)
+			.catch(error => {
+				if (error.name === "ValidationError") {
+					let errors = {};
+	
+					Object.keys(error.errors).forEach((key) => {
+						errors[key] = error.errors[key].message;
+					});
+	
+					return res.status(400).send(errors);
+				}
+				res.status(500).send("Something went wrong");
+			});
 	}).catch(next)
 }
 
