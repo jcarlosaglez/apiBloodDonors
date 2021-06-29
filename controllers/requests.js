@@ -3,11 +3,6 @@ const Request = mongoose.model("Request");		// Importando el modelo de Solicitud
 const Donor = mongoose.model("Donor");			// Importando el modelo del Donador
 
 function createRequest(req, res, next) {
-	if(!(req.user.type === "receiver-user"))  {
-		return res.status(401)
-			.json({errors: {invalid_user: "Solo los receptores pueden crear una solicitud."}});
-	}
-
 	const request = new Request(req.body);
 
 	Donor.findById(request.id_donor, (err, donor) => {
