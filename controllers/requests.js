@@ -7,7 +7,6 @@ function createRequest(req, res, next) {
 		return res.status(401)
 			.json({errors: {invalid_user: "Solo los receptores pueden crear una solicitud."}});
 	}
-
 	const request = new Request(req.body);
 
 	Donor.findById(request.id_donor, (err, donor) => {
@@ -115,7 +114,7 @@ function updateRequest(req, res, next) {
 
 		if(user === "id_receiver"){
 			if (typeof newInfo.status !== 'undefined')
-				request.status = newInfo.status === "Aceptada" ? "Aceptada" : "Rechazada";
+				request.status = (newInfo.status === "Aceptada" ? "Aceptada" : "Rechazada");
 		}
 
 		request.save(function (err, savedRequest) {

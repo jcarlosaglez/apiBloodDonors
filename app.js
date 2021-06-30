@@ -26,7 +26,7 @@ app.use(session({
 // Configurar mongoose
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect("mongodb://localhost/simplejwt", {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 		useCreateIndex: true,
