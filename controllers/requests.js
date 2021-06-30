@@ -114,7 +114,7 @@ function updateRequest(req, res, next) {
 
 		if(user === "id_receiver"){
 			if (typeof newInfo.status !== 'undefined')
-				request.status = newInfo.status === "Aceptada" ? "Aceptada" : "Rechazada";
+				request.status = (newInfo.status === "Aceptada" ? "Aceptada" : "Rechazada");
 		}
 
 		request.save(function (err, savedRequest) {
